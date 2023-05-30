@@ -8,6 +8,7 @@ package responsi;
  *
  * @author Michel
  */
-public interface Calculation {
-    public int total(int price);
+public interface DataHandling {
+    public int getData();
+    public String[][] readAllData();
 }

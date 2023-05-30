@@ -14,7 +14,7 @@ import model.RenterModel;
 import view.AdminPageView;
 import view.LoginPageView;
 import view.RenterDataView;
-import viewresponsi.RoomListView;
+import view.RoomListView;
 
 /**
  *

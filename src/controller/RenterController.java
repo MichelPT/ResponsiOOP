@@ -6,11 +6,12 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import model.RenterModel;
 import model.LoginModel;
 import model.RenterModel;
 import view.LoginPageView;
 import view.RenterDataView;
-import viewresponsi.RoomListView;
+import view.RoomListView;
 
 /**
  *
@@ -22,9 +23,16 @@ public class RenterController {
     public RenterController(RenterModel model, RoomListView view){
         this.model = model;
         this.view = view;
+        loadData();
 //        view.getBtnLogout().addActionListener(this);
     }
 
+        
+    public void loadData(){
+        String columnName[] = RenterModel.HEADER;
+        String data[][] = model.readAllData();
+        view.showData(columnName, data);
+    }
 //    @Override
 //    public void actionPerformed(ActionEvent e) {
 //        if (e.getSource().equals(view.getBtnLogout())) {
