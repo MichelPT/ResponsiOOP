@@ -48,6 +48,11 @@ public class AdminPageView {
     public JButton getBlogout() {
         return blogout;
     }
+
+    public void getWindowDispose() {
+        window.dispose();
+    }
+    
     
     
     

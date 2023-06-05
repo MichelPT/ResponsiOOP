@@ -46,4 +46,12 @@ public class RoomListView {
     public JTable getTabel() {
         return tabel;
     }
+
+    public JButton getBcancel() {
+        return bcancel;
+    }
+    
+    public void dispose(){
+        window.dispose();
+    }
 }

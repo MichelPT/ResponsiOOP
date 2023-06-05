@@ -10,40 +10,54 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 import model.AdminModel;
+import view.AdminEditView;
 import view.AdminPageView;
 
 /**
  *
  * @author Michel
  */
-public class AdminController implements ActionListener{
+public class AdminController implements ActionListener {
+
     AdminModel model;
     AdminPageView view;
-    public AdminController(AdminModel model, AdminPageView view){
+
+    public AdminController(AdminModel model, AdminPageView view) {
         this.model = model;
         this.view = view;
         loadData();
         view.getBlogout().addActionListener(this);
+
         view.getTabel().addMouseListener(new MouseAdapter() {
-            public void MouseClicked(MouseEvent e){
-                int choice;
-                String data[][] = model.readAllData();
-                super.mouseClicked(e);
-                int row = view.getTabel().getSelectedRow();
-                System.out.println(row);
-                String id = data[row][1];
-                if (data[row][5].equals("notPaid")) {
-                    choice = JOptionPane.showConfirmDialog(null, "Confirm this payment?", "Option", JOptionPane.YES_NO_OPTION);
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int selectedRow = view.getTabel().getSelectedRow();
+                Object selectedValue = view.getTabel().getValueAt(selectedRow, 5);
+                    Object selectedId = view.getTabel().getValueAt(selectedRow, 1);
+                if (selectedValue.equals("notPaid")) {
+                    Object selectedName = view.getTabel().getValueAt(selectedRow, 0);
+                    Object selectedRoom = view.getTabel().getValueAt(selectedRow, 6);
+                    int option = JOptionPane.showConfirmDialog(null, "Confirm payment?", "Confirmation", JOptionPane.YES_NO_OPTION);
+                    if (option == JOptionPane.YES_OPTION) {
+                        model.updateData(selectedName.toString(), selectedId.toString(), selectedRoom.toString());
+                        view.getTabel().setValueAt("Paid", selectedRow, 5);
+                        view.getWindowDispose();
+                        AdminPageView view = new AdminPageView();
+                        AdminModel model = new AdminModel();
+                        AdminController controller = new AdminController(model, view);
+                    }
                 } else {
-                    choice = JOptionPane.showConfirmDialog(null, "Confirm this payment?", "Option", JOptionPane.YES_NO_OPTION);
+                        view.getWindowDispose();
+                        AdminEditView view = new AdminEditView();
+                        AdminModel model = new AdminModel();
+                        AdminEditController controller = new AdminEditController(model, view, selectedId.toString());
                 }
             }
         });
-        
+
     }
-    
-    
-    public void loadData(){
+
+    public void loadData() {
         String columnName[] = AdminModel.HEADER;
         String data[][] = model.readAllData();
         view.showData(columnName, data);
@@ -51,6 +65,8 @@ public class AdminController implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        view.getWindowDispose();
+        model.logout();
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

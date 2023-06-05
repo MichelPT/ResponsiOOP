@@ -88,6 +88,10 @@ public class RenterDataView{
         return btnLogout;
     }
     
+    public void dispose(){
+        window.dispose();
+    }
+    
     
 }
 

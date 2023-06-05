@@ -48,6 +48,7 @@ public class LoginController implements ActionListener {
                 RenterController controller = new RenterController(model, view);
              
             }
+            view.dispose();
 
         } else {
             JOptionPane.showMessageDialog(null, "Login Failed!");
