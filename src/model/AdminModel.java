@@ -105,6 +105,20 @@ public class AdminModel extends connection {
             return data;
         }
     }
+    
+    public void deleteRent(String id,String room){
+        try{
+            String query="DELETE from renter where id='"+id+"'";
+            statement=connection.createStatement();
+            statement.executeUpdate(query);
+            query="UPDATE rooms set status='empty' where name='"+room+"'";
+            statement=connection.createStatement();
+            statement.executeUpdate(query);
+            JOptionPane.showMessageDialog(null, "Delete data success!");
+        }catch(HeadlessException | SQLException e){
+            JOptionPane.showMessageDialog(null, "Delete failed!");
+        }
+    }
 
     public void updateData(String name, String id, String room) {
         try {

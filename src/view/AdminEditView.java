@@ -40,6 +40,7 @@ public class AdminEditView extends javax.swing.JFrame {
         contactField = new javax.swing.JTextField();
         durationField = new javax.swing.JTextField();
         billField = new javax.swing.JTextField();
+        deleteBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,16 +61,17 @@ public class AdminEditView extends javax.swing.JFrame {
             }
         });
 
+        deleteBtn.setText("Delete Data");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(159, 159, 159)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(editDataBtn)
-                    .addComponent(jLabel1))
-                .addContainerGap(156, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -84,6 +86,17 @@ public class AdminEditView extends javax.swing.JFrame {
                     .addComponent(durationField, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nameField))
                 .addGap(56, 56, 56))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(159, 159, 159)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(editDataBtn)
+                            .addComponent(jLabel1)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(151, 151, 151)
+                        .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,7 +121,9 @@ public class AdminEditView extends javax.swing.JFrame {
                     .addComponent(billField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(editDataBtn)
-                .addGap(59, 59, 59))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(deleteBtn)
+                .addGap(24, 24, 24))
         );
 
         pack();
@@ -118,10 +133,15 @@ public class AdminEditView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_editDataBtnActionPerformed
 
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField billField;
     private javax.swing.JTextField contactField;
+    private javax.swing.JButton deleteBtn;
     private javax.swing.JTextField durationField;
     private javax.swing.JButton editDataBtn;
     private javax.swing.JLabel jLabel1;
@@ -151,7 +171,8 @@ public class AdminEditView extends javax.swing.JFrame {
     public JTextField getNameField() {
         return nameField;
     }
-    
-    
 
+    public JButton getDeleteBtn() {
+        return deleteBtn;
+    }
 }

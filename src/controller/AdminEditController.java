@@ -27,6 +27,7 @@ public class AdminEditController implements ActionListener {
         this.id = id;
         setValues();
         view.getEditDataBtn().addActionListener(this);
+        view.getDeleteBtn().addActionListener(this);
     }
 
     public void setValues() {
@@ -39,12 +40,19 @@ public class AdminEditController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        model.editRent(view.getNameField().getText(), id, view.getContactField().getText(), Integer.parseInt(view.getDurationField().getText()), Integer.parseInt(view.getBillField().getText()), model.getRenter(id)[4]);
-        view.dispose();
-        AdminPageView view = new AdminPageView();
-        AdminModel model = new AdminModel();
-        AdminController controller = new AdminController(model, view);
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (e.getSource().equals(view.getEditDataBtn())) {
+            model.editRent(view.getNameField().getText(), id, view.getContactField().getText(), Integer.parseInt(view.getDurationField().getText()), Integer.parseInt(view.getBillField().getText()), model.getRenter(id)[4]);
+            view.dispose();
+            AdminPageView view = new AdminPageView();
+            AdminModel model = new AdminModel();
+            AdminController controller = new AdminController(model, view);
+        } else {
+            model.deleteRent(id, model.getRenter(id)[4]);
+            view.dispose();
+            AdminPageView view = new AdminPageView();
+            AdminModel model = new AdminModel();
+            AdminController controller = new AdminController(model, view);
+        }
     }
 
 }
